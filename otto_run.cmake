@@ -15,6 +15,11 @@ endif()
 ## If shared library is required, add target
 if (LIB_NAME)
     add_library(${LIB_NAME} SHARED ${LIB_OBJS})
+    set_target_properties(${LIB_NAME}
+        PROPERTIES
+            VERSION ${PROJECT_VERSION}
+            SOVERSION ${PROJECT_VERSION_MAJOR}
+        )
 
     ## If shared library and binary are required, link binary
     if (APP_NAME)
