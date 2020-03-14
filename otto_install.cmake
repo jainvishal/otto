@@ -3,6 +3,8 @@ if (LIB_NAME)
         LIBRARY DESTINATION ${OTTO_PROJECT_INSTALL_PREFIX}/lib$<$<CONFIG:Debug>:_debug>
         PUBLIC_HEADER DESTINATION ${OTTO_PROJECT_INSTALL_PREFIX}/include
     )
+    # create any necessary find package targets for others to use
+    include(otto_find)
 endif()
 if (APP_NAME)
     install(TARGETS ${APP_NAME}-bin EXPORT ${APP_NAME}Targets
