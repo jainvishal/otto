@@ -1,11 +1,8 @@
 ## Assuming source code is divided into src and include directories
 include_directories(include)
 
-## Include misc functions that otto needs
+## Create Version.h
 include(otto_create_version)
-
-## create version.h file
-otto_create_version()
 
 ## If binary is required, add target
 if (APP_NAME)
