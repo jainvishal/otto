@@ -9,13 +9,14 @@ include(/home/vishalj/workspace/gh/otto/otto.cmake)
 
 ## Targets
 # name of application 
-set(APP_NAME hello)
+set(APP_NAME ${PROJECT_NAME})
 # name of library
 set(LIB_NAME ${PROJECT_NAME})
 
 ## Dependencies
 set(APP_OBJS src/sayit.cpp)
 set(LIB_OBJS src/sayHello.cpp)
+set(LIB_HEADERS include/sayHello.h)
 
 ## Automate
 include(otto_run)
