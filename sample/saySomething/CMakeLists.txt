@@ -14,10 +14,7 @@ set(APP_NAME ${PROJECT_NAME})
 ## Dependencies
 set(APP_OBJS src/saySomething.cpp)
 
+set(OTTO_DEPENDENCY_ON sayHello:0.0)
+
 ## Automate
 include(otto_run)
-
-find_package(sayHello 0.0 REQUIRED)
-if (sayHello_FOUND)
-    target_link_libraries(${APP_NAME}-bin sayHello::sayHello)
-endif()
