@@ -36,3 +36,5 @@ if (LIB_NAME)
         target_link_libraries(${APP_NAME}-bin ${LIB_NAME})
     endif()
 endif()
+
+include(otto_install)
