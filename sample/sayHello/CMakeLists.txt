@@ -16,7 +16,9 @@ set(LIB_NAME ${PROJECT_NAME})
 ## Dependencies
 set(APP_OBJS src/sayit.cpp)
 set(LIB_OBJS src/sayHello.cpp)
-set(LIB_HEADERS include/sayHello.h)
+set(LIB_HEADERS
+    include/sayHello.h
+    include/dummy.h)
 
 ## Automate
 include(otto_run)

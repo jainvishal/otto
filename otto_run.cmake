@@ -15,7 +15,7 @@ if (LIB_NAME)
     if (LIB_HEADERS)
         set_target_properties(${LIB_NAME}
             PROPERTIES
-                PUBLIC_HEADER ${LIB_HEADERS}
+                PUBLIC_HEADER "${LIB_HEADERS}"
         )
         target_include_directories(${LIB_NAME}
             INTERFACE $<INSTALL_INTERFACE:${OTTO_PROJECT_INSTALL_PREFIX}/include>
