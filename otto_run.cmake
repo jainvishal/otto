@@ -36,8 +36,9 @@ if (APP_NAME)
         target_link_libraries(${APP_NAME}-bin ${LIB_NAME})
     endif()
 
-    ## Fulfill any external dependencies (find_package)
-    include(otto_external_dependency)
 endif()
+
+## Fulfill any external dependencies (find_package)
+include(otto_external_dependency)
 
 include(otto_install)
