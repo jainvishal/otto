@@ -1,3 +1,24 @@
+### Following can be tuned as needed
+set(CMAKE_INSTALL_PREFIX /home/vishalj/release)
+# Lets say we perform installs in /opt (used for finding shared libraries on installed systems)
+set(OTTO_INSTALL_RPATH_PREFIX /opt)
+# Where to find installed cmake files for other projects
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_INSTALL_PREFIX})
+
+set(OTTO_BIN_OUTPUT_DIR bin)
+set(OTTO_LIB_OUTPUT_DIR lib)
+set(OTTO_DEBUG_POSTFIX _debug)
+
+set(OTTO_PROJECT_INSTALL_PREFIX ${PROJECT_NAME}/${PROJECT_VERSION}/${OTTO_TOOLCHAIN})
+set(OTTO_INTERFACE_INSTALL_PREFIX ${PROJECT_NAME}/${PROJECT_VERSION})
+
+# Following will control where to find shared libraries after installation
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH True)
+set(CMAKE_INSTALL_RPATH ${OTTO_INSTALL_RPATH_PREFIX}/${OTTO_LIB_OUTPUT_DIR}$<$<CONFIG:Debug>:${OTTO_DEBUG_POSTFIX}>)
+
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OTTO_LIB_OUTPUT_DIR}$<$<CONFIG:Debug>:${OTTO_DEBUG_POSTFIX}>/${OTTO_TOOLCHAIN})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OTTO_BIN_OUTPUT_DIR}$<$<CONFIG:Debug>:${OTTO_DEBUG_POSTFIX}>/${OTTO_TOOLCHAIN})
+
 ## Assuming source code is divided into src and include directories
 include_directories(include)
 
@@ -18,7 +39,7 @@ if (LIB_NAME)
                 PUBLIC_HEADER "${LIB_HEADERS}"
         )
         target_include_directories(${LIB_NAME}
-            INTERFACE $<INSTALL_INTERFACE:${OTTO_PROJECT_INSTALL_PREFIX}/include>
+            INTERFACE $<INSTALL_INTERFACE:${OTTO_INTERFACE_INSTALL_PREFIX}/include>
         )
     endif()
 endif()

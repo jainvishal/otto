@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.17)
 
+include(/home/vishalj/workspace/gh/otto/otto.cmake)
+
 # define project name, its version and programming language
 project(sayHello
     VERSION 0.0.1
     LANGUAGES CXX)
-
-include(/home/vishalj/workspace/gh/otto/otto.cmake)
 
 ## Targets
 # name of application 

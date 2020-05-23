@@ -15,7 +15,7 @@ configure_file(${OTTO_TEMPLATE_DIR}/ProjectConfig.cmake
     @ONLY
 )
 
-set(ConfigPackageLocation ${OTTO_PROJECT_INSTALL_PREFIX}/cmake)
+set(ConfigPackageLocation ${OTTO_INTERFACE_INSTALL_PREFIX}/cmake)
 
 install(EXPORT ${PROJECT_NAME}Targets
     FILE
