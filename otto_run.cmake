@@ -19,8 +19,6 @@ set(CMAKE_INSTALL_RPATH ${OTTO_INSTALL_RPATH_PREFIX}/${OTTO_LIB_OUTPUT_DIR}$<$<C
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OTTO_LIB_OUTPUT_DIR}$<$<CONFIG:Debug>:${OTTO_DEBUG_POSTFIX}>/${OTTO_TOOLCHAIN})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OTTO_BIN_OUTPUT_DIR}$<$<CONFIG:Debug>:${OTTO_DEBUG_POSTFIX}>/${OTTO_TOOLCHAIN})
 
-## Assuming source code is divided into src and include directories
-include_directories(include)
 
 ## Create Version.h
 include(otto_create_version)
@@ -32,6 +30,11 @@ if (LIB_NAME)
         PROPERTIES
             VERSION ${PROJECT_VERSION}
             SOVERSION ${PROJECT_VERSION_MAJOR}
+    )
+    ## Assuming source code is divided into src and include directories
+    target_include_directories(${LIB_NAME}
+        PRIVATE $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        PRIVATE $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/${OTTO_TOOLCHAIN}>
     )
     if (LIB_HEADERS)
         set_target_properties(${LIB_NAME}
@@ -50,6 +53,11 @@ if (APP_NAME)
     set_target_properties(${APP_NAME}-bin
         PROPERTIES
             OUTPUT_NAME ${APP_NAME}
+    )
+    ## Assuming source code is divided into src and include directories
+    target_include_directories(${APP_NAME}-bin
+        PRIVATE $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        PRIVATE $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/${OTTO_TOOLCHAIN}>
     )
 
     ## Link executable if shared object is also produced
